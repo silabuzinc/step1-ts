@@ -68,3 +68,66 @@ Ya no será necesario mapear cada archivo, ahora bastará ejecutar `npx tsc`:
 ```bash
 npx tsc
 ```
+
+Para ejecutar el archivo javascript generado:
+
+```bash
+node dist/index.js
+```
+
+# Tarea: configurar Debug en VScode
+
+Para poder realizar el debug en VSCode necesitamos hacer 2 configuraciones:
+
+1. Crear el archivo launch.json desde `Run & Debug` de VSCode.
+2. Habilitar un parámetro en `tsconfig.json`.
+
+## Punto 1: launch.json
+
+El archivo `.vscode/launch.json` se genera en la opción `Run & Debug` seleccionando :
+
+1. Create a launch.json file desde `Run & Debug`
+2. Select debugger: Node.js
+
+Los 2 pasos mencionados en imágenes:
+
+Creación de `launch.json` personalizado:
+![](docs/img/run_debug_launchjson.png)
+
+Debugger en `Node.js`:
+![](docs/img/run_debug_launchjson_node.png)
+
+Finalmente en el archivo `.vscode/launch.json` agregar la siguiente línea:
+
+```json
+"preLaunchTask": "tsc: build - tsconfig.json"
+```
+
+Finalmente el archivo `.vscode/launch.json` quedará de la siguiente manera:
+
+```json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${file}",
+            "preLaunchTask": "tsc: build - tsconfig.json"
+        }
+    ]
+}
+```
+
+## Punto 2: parámetro en tsconfig.json
+
+Es la tarea del presente repositorio. Investigar el parámetro que se necesita activar para que el debug en VSCode funcione.
+
+[Aquí puedes verificar la solución a esta tarea, recuerda primero intentar](https://github.com/silabuzinc/step1-sol-ts)
